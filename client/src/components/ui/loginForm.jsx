@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react"
 import validator from "../../utils/validator";
 import {useDispatch, useSelector} from "react-redux";
 import {Redirect, useHistory} from "react-router-dom";

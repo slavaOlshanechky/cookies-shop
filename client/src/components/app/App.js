@@ -1,12 +1,12 @@
-import {Redirect, Route, Switch} from "react-router-dom";
+import React from "react";
 import Main from "../../layouts/main";
 
 function App() {
     return (
         <div>
-            <Header />
+            {/*<Header />*/}
             <Main />
-            <Footer />
+            {/*<Footer />*/}
         </div>
     );
 }
