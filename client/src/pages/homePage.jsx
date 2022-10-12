@@ -1,12 +1,12 @@
-import React from "react";
-import {Redirect} from "react-router-dom";
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 const HomePage = () => {
-    return (
-        <>
-            <Redirect to="/catalog"/>
-        </>
-    )
-}
+  return (
+    <>
+      <Redirect to="/catalog" />
+    </>
+  );
+};
 
-export default HomePage
+export default HomePage;
