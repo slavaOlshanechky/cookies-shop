@@ -4,8 +4,10 @@ import authService from './auth.service';
 import configFile from '../config.json';
 import { toast } from 'react-toastify';
 
+const apiEndpoint = configFile.apiEndpointDevelopment;
+
 const http = axios.create({
-  baseURL: configFile.apiEndPoint,
+  baseURL: apiEndpoint
 });
 
 http.interceptors.request.use(
@@ -49,7 +51,7 @@ http.interceptors.request.use(
       if (accessToken) {
         config.headers = {
           ...config.headers,
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`
         };
       }
     }
@@ -90,7 +92,7 @@ const httpService = {
   post: http.post,
   put: http.put,
   delete: http.delete,
-  patch: http.patch,
+  patch: http.patch
 };
 
 export default httpService;
