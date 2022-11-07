@@ -8,26 +8,26 @@ const apiEndPoint =
         : config.apiEndPointProduction;
 
 const httpAuth = axios.create({
-    baseURL: apiEndPoint + '/auth/'
+  baseURL: config.apiEndPoint + '/auth/'
 });
 
 const authService = {
-    register: async (payload) => {
-        const { data } = await httpAuth.post(`signUp`, payload);
-        return data;
-    },
-    login: async (email, password) => {
-        const { data } = await httpAuth.post(`signInWithPassword`, {
-            email,
-            password
-        });
-        return data;
-    },
-    refresh: async () => {
-        const { data } = await httpAuth.post('token', {
-            refresh_token: localStorageService.getRefreshToken()
-        });
-        return data;
-    }
+  register: async (payload) => {
+    const { data } = await httpAuth.post(`signUp`, payload);
+    return data;
+  },
+  login: async (email, password) => {
+    const { data } = await httpAuth.post(`signInWithPassword`, {
+      email,
+      password
+    });
+    return data;
+  },
+  refresh: async () => {
+    const { data } = await httpAuth.post('token', {
+      refresh_token: localStorageService.getRefreshToken()
+    });
+    return data;
+  }
 };
 export default authService;
