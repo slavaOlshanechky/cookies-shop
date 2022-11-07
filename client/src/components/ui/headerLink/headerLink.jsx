@@ -15,7 +15,7 @@ const HeadLink = ({ svg, header, content }) => {
 HeadLink.propTypes = {
   svg: PropTypes.node,
   header: PropTypes.string,
-  content: PropTypes.node,
+  content: PropTypes.node
 };
 
 export default HeadLink;
