@@ -2,6 +2,11 @@ import config from '../config.json';
 import axios from 'axios';
 import localStorageService from './local.storage.service';
 
+const apiEndPoint =
+    process.env.NODE_ENV === 'development'
+        ? config.apiEndPointDevelopment
+        : config.apiEndPointProduction;
+
 const httpAuth = axios.create({
   baseURL: config.apiEndPoint + '/auth/'
 });

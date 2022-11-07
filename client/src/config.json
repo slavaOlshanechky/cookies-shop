@@ -1,8 +1,6 @@
 {
-  "apiEndPoint": "http://localhost:8080/api",
+  "apiEndPointDevelopment": "http://localhost:8080/api/",
+  "apiEndPointProduction": "http://localhost:8081/api/",
   "isFirebase": false,
-  "tokenExpirationTime": 3600,
-  "compilerOptions": {
-    "baseUrl": "src"
-  }
+  "tokenExpirationTime": 3600
 }
