@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getCategoriesList } from '../store/categories';
+import {getConfectionaryList} from "../store/confectionary";
 const useCatalog = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCategory, setSelectedCategory] = useState(null);

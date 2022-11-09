@@ -1,4 +1,5 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
+import confectionaryService from '../services/confectionary.service';
 
 const confectionarySlice = createSlice({
     name: 'confectionary',
@@ -68,9 +69,60 @@ const {
     confectionarySaveRequestSuccess,
     confectionarySaveRequestFail
 
-
 } = actions;
 
+const isOutdated = (date) => {
+    return Date.now() - date > 10 * 60 * 1000;
+};
+
+export const loadConfectionaryList = () => async (dispatch, getState) => {
+    const { lastFetch } = getState.confectionary;
+    if (isOutdated(lastFetch)) {
+        dispatch(confectionaryRequestSend());
+        try {
+            const { content } = await confectionaryService.fetchAll();
+            dispatch(confectionaryRequestSuccess(content));
+        } catch (e) {
+            dispatch(confectionaryRequestFail(e.message));
+        }
+    }
+};
+
+export const addConfectionary = (payload) => async (dispatch) => {
+    dispatch(confectionaryAddRequestSend());
+    try {
+        const { content } = await confectionaryService.create(payload);
+        dispatch(confectionaryAddRequestSuccess(content));
+    } catch (e) {
+        dispatch(confectionaryAddRequestFail(e.message));
+    }
+};
+
+export const saveConfectionary = (payload) => async (dispatch) => {
+    dispatch(confectionarySaveRequestSend());
+    try {
+        const { content } = await confectionaryService.patch(payload);
+        dispatch(confectionarySaveRequestSuccess(content));
+    } catch (e) {
+        dispatch(confectionarySaveRequestFail(e.message));
+    }
+};
+
+export const deleteConfectionary = (id) => async (dispatch) => {
+    dispatch(confectionaryDeleteRequestSend());
+    try {
+        const { content } = await confectionaryService.delete(id);
+        if (!content) {
+            dispatch(confectionaryDeleteRequestSuccess(content));
+        }
+    } catch (e) {
+        dispatch(confectionaryDeleteRequestFail(e.message));
+    }
+};
+
+export const getLoadingStatus = () => (state) => state.confectionary.isLoading;
 export const getConfectionaryList = () => (state) => state.confectionary.entities;
+export const getConfectionaryById = (id) => (state) =>
+    state.confectionary.entities.find((item) => item._id === id);
 
 export default confectionaryReducer;
